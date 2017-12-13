@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+	<class name="com.qhit.lh.zp.t2.bean.Emp" table="t_emp">
+		<!-- 主键的配置 -->
+		<id name="eid" column="eid" type="integer">
+			<generator class="native"></generator>
+		</id>
+		<!-- 成员属性的配置 -->
+		<property name="empName" column="empName" type="string">
+		     <column name="empName" length="24" not-null="true"/>
+		</property>
+		<property name="empSex" column="empSex" type="string">
+		   <column name="empSex" length="1" not-null="true"/>
+		   </property>
+		<property name="birthday" column="birthday" type="string">
+		  <column name="birthday" length="24" />
+		  </property>
+		<property name="deptId" column="deptId" type="integer">
+		 <column name="deptId" not-null="true" />
+		 </property>
+		<!-- 一对一关系映射的配置 -->
+		<one-to-one name="user" class="com.qhit.lh.zp.t2.bean.User" cascade="all"></one-to-one>
+		<!-- 多对一关联的配置 -->
+		<many-to-one name="dept" class="com.qhit.lh.zp.t2.bean.Dept" column="deptId" lazy="false"></many-to-one>
+	</class>
+</hibernate-mapping>
